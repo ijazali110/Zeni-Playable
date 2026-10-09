@@ -34,3 +34,10 @@ Plan prices, payment provider, subscription period source, account verification 
 - `saas/test_api.py`: API permission and quota regression tests.
 - IMPORTANT: export reservation API does NOT generate or deliver a verified playable artifact yet. The live browser converter is not gated. Never expose this API publicly or treat it as billing-ready.
 - AI status endpoint does not call OpenAI. Developer key configuration and safe repair pipeline remain pending.
+
+## Export safety checkpoint 2
+- `saas/artifacts.py`: structural HTML/ZIP checks, total compressed/uncompressed size limits, encrypted/unsafe ZIP member rejection. This is NOT an ad-network certification or gameplay runtime test.
+- `saas/jobs.py`: atomic stale reservation expiration (minimum 300 seconds), per-user job status query. The expiration routine requires scheduled invocation; no production scheduler yet.
+- `saas/test_artifacts.py`: positive/negative artifact inspection and reservation recovery checks.
+- Validated download service and browser-to-backend bridge remain unimplemented, so export quotas are not enforced on the live website.
+- The AI connector remains disabled until developer authorization and budget rules are completed.
