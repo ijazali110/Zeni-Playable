@@ -27,3 +27,10 @@ This branch is **not deployed**. Production remains the original Playable Cave P
 
 ## Business decisions pending
 Plan prices, payment provider, subscription period source, account verification sender/provider, and exact AI repair billing/credit treatment.
+
+## Major update staging checkpoint
+- `saas/server.py`: localhost-only staging API with hashed expiring bearer tokens, plan introspection, developer-only AI status, and quota reservation. Tokens are currently provisioned by trusted code; there is no public signup/payment integration.
+- `saas/abuse.py`: privacy-aware IP-prefix/device-hint velocity signals. This provides challenge/review recommendations, not automatic bans. Requires protected signup flow and CAPTCHA provider integration.
+- `saas/test_api.py`: API permission and quota regression tests.
+- IMPORTANT: export reservation API does NOT generate or deliver a verified playable artifact yet. The live browser converter is not gated. Never expose this API publicly or treat it as billing-ready.
+- AI status endpoint does not call OpenAI. Developer key configuration and safe repair pipeline remain pending.
